@@ -1,0 +1,42 @@
+<div class="container">
+  <mat-toolbar color ="primary" class="app-header header mat-elevation-z3">
+    <button mat-icon-button (click)="snav.toggle()" [hidden]="mobileQuery.matches">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1>
+      IAGO Auction
+    </h1>
+  </mat-toolbar>
+  <mat-sidenav-container #nagivationSidenav class="sidenav-container">
+    <mat-sidenav color ="accent" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="mobileQuery.matches" class="side-menu mat-elevation-z2"
+                 #snav>
+      <div class="side-menu-inner">
+        <mat-nav-list>
+          <a mat-list-item routerLink="/paintings/" mat-line routerLinkActive="active-link">
+            <i class="material-icons">
+              brush
+            </i>
+            <p>Paintings</p>
+          </a>
+          <a mat-list-item routerLink="/auctions/" mat-line routerLinkActive="active-link">
+            <i class="material-icons">
+              attach_money
+            </i>
+            <p>Auctions</p>
+          </a>
+          <a mat-list-item routerLink="/admin/" mat-line routerLinkActive="active-link">
+            <i class="material-icons">
+              settings
+            </i>
+            <p>Manage</p>
+          </a>      
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+      <div class="component-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

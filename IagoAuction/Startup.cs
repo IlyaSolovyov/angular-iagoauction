@@ -1,18 +1,26 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
 
 namespace IagoAuction
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IHostingEnvironment environment;
+
+        public Startup(IHostingEnvironment env, IConfiguration configuration)
         {
-            Configuration = configuration;
+            environment = env;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{(env.IsProduction() ? string.Empty : "Development")}.json", true)
+                .AddEnvironmentVariables().Build();
+            this.Configuration = builder;
         }
 
         public IConfiguration Configuration { get; }
@@ -61,10 +69,7 @@ namespace IagoAuction
 
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
             });
         }
     }
