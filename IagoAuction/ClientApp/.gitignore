@@ -38,3 +38,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Ignores compiled TypeScript files
+**/wwwroot/app/**/*.map
+**/wwwroot/app/**/*.js
