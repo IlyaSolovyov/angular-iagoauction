@@ -1,1 +1,37 @@
-﻿
+
+.painting-card {
+  margin: 32px;
+}
+
+.description {
+  height: 3.6em;
+}
+
+.image-card{
+  max-width:664px;
+  height:332px;
+}
+
+@media screen and (max-width:1024px) {
+  .image-card {
+    max-width: 352px;
+    height: 166px;
+  }
+
+  .painting-card {
+    margin: 16px;
+  }
+}
+
+@media screen and (max-width:640px) {
+  .image-card {
+    width:332px;
+    height:166px;
+  }
+
+  .painting-card {
+    margin: 8px;
+  }
+}
+
+

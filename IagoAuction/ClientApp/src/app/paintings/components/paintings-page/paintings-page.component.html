@@ -1,12 +1,8 @@
 <div class="container">
 
-  <div class="list-container">
-    <div class="card-inner-container" *ngIf="paintingsCollection">
-      <div class="card" *ngFor="let card of paintingsCollection[selectedPageNumber-1]">
-        <a class="card-link" routerLink="../paintings/{{card.painting.id}}">
-          <paintings-painting-card [paintingCard]="card"></paintings-painting-card>
-        </a>
-      </div>
+  <div class="list-container" *ngIf="paintingsCollection">
+      <div class="card-container" *ngFor="let card of paintingsCollection[selectedPageNumber-1]">
+          <paintings-painting-card class="card" [paintingCard]="card"></paintings-painting-card>
     </div>
   </div>
 
@@ -24,7 +20,7 @@
       </div>
 
       <div class="pagination-links">
-        <a *ngFor="let page of currentPageNumbers" [class.pagination-active-link]="page==selectedPageNumber" routerLink="/news/{{page}}">{{page}}</a>
+        <a *ngFor="let page of currentPageNumbers" [class.pagination-active-link]="page==selectedPageNumber" routerLink="/paintings/{{page}}">{{page}}</a>
       </div>
 
       <div>

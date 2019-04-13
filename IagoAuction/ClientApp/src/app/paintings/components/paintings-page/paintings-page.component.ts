@@ -143,7 +143,7 @@ export class PaintingsPageComponent {
         pageCards[i] = [];
 
         for (let j = 0; j < result[i].length; j++) {
-          pageCards[i].push(new PaintingCard(result[i][j], 1, 1));
+          pageCards[i].push(new PaintingCard(result[i][j]));
         }
       }
       return pageCards;

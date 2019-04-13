@@ -18,15 +18,28 @@
   color: $accent;
 }
 
-.card-container {
+.list-container {
   flex: 5;
   min-height: 564px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+  
+.card-container {
+  flex: 0 0 50%;
 }
 
-.card {
-  margin: 16px 0px;
+
+@media screen and (max-width:640px) {
+  .card-container {
+    flex: 0 0 100%;
+  }
 }
 
+.card{
+
+}
 .pagination-container {
   flex: 1;
   display: flex;
@@ -61,10 +74,6 @@ a.pagination-active-link:active {
   color: black;
   text-decoration: none;
   font-weight: bolder;
-}
-
-.card {
-  margin: 8px;
 }
 
 .card-link {
