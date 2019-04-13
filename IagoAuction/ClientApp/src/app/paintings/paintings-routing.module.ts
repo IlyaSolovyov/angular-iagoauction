@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PaintingsComponent } from './components/paintings/paintings.component';
-import { PaintingsListComponent } from './components/paintings-list/paintings-list.component';
 import { PaintingDetailsComponent } from './components/painting-details/painting-details.component';
+import { PaintingsPageComponent } from './components/paintings-page/paintings-page.component';
 
 const paintingsRoutes: Routes = [
   {
@@ -10,7 +10,7 @@ const paintingsRoutes: Routes = [
     children:
       [
         { path: '', redirectTo: '1', pathMatch: 'full' },
-        { path: ':pageId', component: PaintingsListComponent, pathMatch: 'full' },
+        { path: ':pageId', component: PaintingsPageComponent, pathMatch: 'full' },
         {
           path: 'details/:paintingId',
           component: PaintingDetailsComponent

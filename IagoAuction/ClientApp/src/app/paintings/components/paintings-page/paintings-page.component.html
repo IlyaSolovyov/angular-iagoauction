@@ -1,0 +1,43 @@
+<div class="container">
+
+  <div class="list-container">
+    <div class="card-inner-container" *ngIf="paintingsCollection">
+      <div class="card" *ngFor="let card of paintingsCollection[selectedPageNumber-1]">
+        <a class="card-link" routerLink="../paintings/{{card.painting.id}}">
+          <paintings-painting-card [paintingCard]="card"></paintings-painting-card>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination-container">
+    <div class="pagination">
+
+      <div>
+        <button class="cursor-button" [disabled]="currentBatchIndex<=0" mat-icon-button (click)="changeBatch(currentBatchIndex, -1)">
+          <mat-icon aria-label="Previous batch">chevron_left</mat-icon>
+          <mat-icon aria-label="Previous batch">chevron_left</mat-icon>
+        </button>
+        <button mat-icon-button [disabled]="selectedPageNumber<=1" (click)="changePage(selectedPageNumber, -1)">
+          <mat-icon aria-label="Previous page">arrow_back</mat-icon>
+        </button>
+      </div>
+
+      <div class="pagination-links">
+        <a *ngFor="let page of currentPageNumbers" [class.pagination-active-link]="page==selectedPageNumber" routerLink="/news/{{page}}">{{page}}</a>
+      </div>
+
+      <div>
+        <button mat-icon-button [disabled]="selectedPageNumber>=maxPageNumber" (click)="changePage(selectedPageNumber, 1)">
+          <mat-icon aria-label="Next page">arrow_forward</mat-icon>
+        </button>
+        <button class="cursor-button" [disabled]="!upcomingBatchExists" mat-icon-button (click)="changeBatch(currentBatchIndex, 1)">
+          <mat-icon aria-label="Next batch">chevron_right</mat-icon>
+          <mat-icon aria-label="Next batch">chevron_right</mat-icon>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
