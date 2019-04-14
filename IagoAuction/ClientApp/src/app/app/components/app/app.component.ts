@@ -12,6 +12,8 @@ export class AppComponent implements OnDestroy {
   private _mobileQueryListener: () => void;
 
   //user: Observable<User>;
+  currentYear: number;
+  currentMonth: number;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -24,6 +26,9 @@ export class AppComponent implements OnDestroy {
 
   ngOnInit(): void {
     //this.user = this.authStore.user;
+    let today = new Date();
+    this.currentYear = today.getFullYear();
+    this.currentMonth = today.getMonth()+1;
   }
 
   ngOnDestroy(): void {
