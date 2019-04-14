@@ -10,6 +10,7 @@ import { PaintingsModule } from '../paintings/paintings.module';
 import { AuctionsModule } from '../auctions/auctions.module';
 import { AdminModule } from '../admin/admin.module';
 import { PaintingsService } from '../shared/services/paintings.service';
+import { AuctionService } from '../shared/services/auction.service';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PaintingsService } from '../shared/services/paintings.service';
     AppRoutingModule
   ],
   providers: [
-    PaintingsService
+    PaintingsService,
+    AuctionService
   ],
   bootstrap: [AppComponent]
 })

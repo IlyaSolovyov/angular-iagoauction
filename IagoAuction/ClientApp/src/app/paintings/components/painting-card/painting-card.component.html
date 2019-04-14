@@ -4,7 +4,9 @@
     <mat-card-title>{{paintingCard.painting.title}}</mat-card-title>
     <mat-card-subtitle>{{paintingCard.painting.title}}</mat-card-subtitle>
   </mat-card-header>
-  <img class="image-card" mat-card-image src="{{paintingCard.painting.imageUrl}}" alt="Painting image unavailable.">
+  <div class="image-container">
+    <img class="image-card" src="{{paintingCard.painting.imageUrl}}" alt="Painting image unavailable.">
+  </div>
   <mat-card-content>
     <p class="description">
       {{(paintingCard?.painting.description.length>128) ? (paintingCard?.painting.description | slice:0:128) + '...' : (paintingCard?.painting.description)}}

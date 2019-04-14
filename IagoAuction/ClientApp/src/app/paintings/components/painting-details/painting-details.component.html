@@ -1,1 +1,31 @@
-﻿<div style="border: 1px solid red">PaintingDetails Component</div>
+<div class="container">
+  <mat-card class="painting-card">
+    <mat-card-header>
+      <mat-card-title> {{painting.title}}</mat-card-title>
+    </mat-card-header>
+    <div class="image-container">
+      <img class="image-card" src="{{painting.imageUrl}}" alt="Painting image unavailable.">
+    </div>
+    <mat-card-content>
+      <div class="details-container">
+        <h4>Author: {{painting.author}}</h4>
+        <h4>Suggested price: {{painting.suggestedStartPrice}}$</h4>
+        <div class="text-container ">
+          {{painting.description}}
+        </div>
+      </div>
+      <div class="auction-container">
+        <div *ngIf="auction;then auction_details else auction_unavailable"></div>
+        <ng-template #auction_details>
+          <h4>This painting is part of "{{auction.title}}" auction.</h4>
+        </ng-template>
+        <ng-template #auction_unavailable>
+          <h4>This image has not been assigned to any auctions yet.</h4>
+        </ng-template>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button *ngIf="auction" mat-button routerLink="/auctions/{{auction.id}}">VISIT AUCTION PAGE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

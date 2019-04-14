@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PaintingsComponent } from './components/paintings/paintings.component';
 import { PaintingDetailsComponent } from './components/painting-details/painting-details.component';
 import { PaintingsPageComponent } from './components/paintings-page/paintings-page.component';
+import { PaintingDetailsPaintingResolver } from './components/painting-details/painting-details-painting-resolver.service';
+import { PaintingDetailsAuctionResolver } from './components/painting-details/painting-details-auction-resolver.service';
 
 const paintingsRoutes: Routes = [
   {
@@ -13,7 +15,11 @@ const paintingsRoutes: Routes = [
         { path: ':pageId', component: PaintingsPageComponent, pathMatch: 'full' },
         {
           path: 'details/:paintingId',
-          component: PaintingDetailsComponent
+          component: PaintingDetailsComponent,
+          resolve: {
+            painting: PaintingDetailsPaintingResolver,
+            auction: PaintingDetailsAuctionResolver
+          }
         }
       ]
   },
@@ -29,6 +35,10 @@ const paintingsRoutes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    PaintingDetailsPaintingResolver,
+    PaintingDetailsAuctionResolver
   ]
 })
 export class PaintingsRoutingModule {

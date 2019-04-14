@@ -7,15 +7,26 @@
   height: 3.6em;
 }
 
-.image-card{
-  max-width:664px;
-  height:332px;
+.image-container{
+  background:grey;
+  display:flex;
+  width:100%;
+  align-content:center;
+  justify-content:center;
+  margin-bottom:16px;
+}
+
+.image-card {
+  max-width: 664px;
+  height: 332px;
+  vertical-align: middle;
 }
 
 @media screen and (max-width:1024px) {
   .image-card {
-    max-width: 352px;
-    height: 166px;
+    max-width: 316px;
+    height: 150px;
+
   }
 
   .painting-card {

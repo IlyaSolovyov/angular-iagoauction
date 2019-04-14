@@ -26,6 +26,10 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\paintings\models\painting-card.ts" />
+    <None Remove="ClientApp\src\app\shared\models\auction.ts" />
+    <None Remove="ClientApp\src\app\shared\models\bid.ts" />
+    <None Remove="ClientApp\src\app\shared\models\bidder.ts" />
+    <None Remove="ClientApp\src\app\shared\models\lot.ts" />
     <None Remove="ClientApp\src\app\shared\models\painting.ts" />
   </ItemGroup>
 
@@ -36,6 +40,10 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\paintings\models\painting-card.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\auction.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\bid.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\bidder.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\lot.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\models\painting.ts" />
   </ItemGroup>
 
