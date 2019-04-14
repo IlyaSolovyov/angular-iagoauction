@@ -23,7 +23,8 @@ import {
   MatTooltipModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
-  MatMenuModule
+  MatMenuModule,
+  MatCardModule
   } from '@angular/material';
 
 
@@ -32,13 +33,15 @@ import {
     MatButtonModule, MatCheckboxModule, MatRadioModule, MatSelectModule, MatTabsModule, MatDatepickerModule,
     MatInputModule, MatExpansionModule, MatIconModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule,
     MatSortModule, MatToolbarModule, MatSidenavModule, MatListModule, MatButtonToggleModule, MatAutocompleteModule,
-    MatSnackBarModule, MatDialogModule, MatTooltipModule, MatProgressBarModule, MatProgressSpinnerModule, MatMenuModule
+    MatSnackBarModule, MatDialogModule, MatTooltipModule, MatProgressBarModule, MatProgressSpinnerModule, MatMenuModule,
+    MatCardModule
   ],
   exports: [
     MatButtonModule, MatCheckboxModule, MatRadioModule, MatSelectModule, MatTabsModule, MatDatepickerModule,
     MatInputModule, MatExpansionModule, MatIconModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule,
     MatSortModule, MatToolbarModule, MatSidenavModule, MatListModule, MatButtonToggleModule, MatAutocompleteModule,
-    MatSnackBarModule, MatDialogModule, MatTooltipModule, MatProgressBarModule, MatProgressSpinnerModule, MatMenuModule
+    MatSnackBarModule, MatDialogModule, MatTooltipModule, MatProgressBarModule, MatProgressSpinnerModule, MatMenuModule,
+    MatCardModule
   ]
 })
 export class MaterialModule {

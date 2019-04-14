@@ -1,0 +1,19 @@
+<mat-card class="painting-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{paintingCard.painting.title}}</mat-card-title>
+    <mat-card-subtitle>{{paintingCard.painting.title}}</mat-card-subtitle>
+  </mat-card-header>
+  <div class="image-container">
+    <img class="image-card" src="{{paintingCard.painting.imageUrl}}" alt="Painting image unavailable.">
+  </div>
+  <mat-card-content>
+    <p class="description">
+      {{(paintingCard?.painting.description.length>128) ? (paintingCard?.painting.description | slice:0:128) + '...' : (paintingCard?.painting.description)}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button routerLink="../details/{{paintingCard.painting.id}}">DETAILS</button>
+    <button mat-button>EDIT</button>
+  </mat-card-actions>
+</mat-card>

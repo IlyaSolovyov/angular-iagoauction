@@ -9,6 +9,8 @@ import { AppComponent } from './components/app/app.component';
 import { PaintingsModule } from '../paintings/paintings.module';
 import { AuctionsModule } from '../auctions/auctions.module';
 import { AdminModule } from '../admin/admin.module';
+import { PaintingsService } from '../shared/services/paintings.service';
+import { AuctionService } from '../shared/services/auction.service';
 
 
 @NgModule({
@@ -26,7 +28,10 @@ import { AdminModule } from '../admin/admin.module';
     AdminModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    PaintingsService,
+    AuctionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,48 @@
+
+.painting-card {
+  margin: 32px;
+}
+
+.description {
+  height: 3.6em;
+}
+
+.image-container{
+  background:grey;
+  display:flex;
+  width:100%;
+  align-content:center;
+  justify-content:center;
+  margin-bottom:16px;
+}
+
+.image-card {
+  max-width: 664px;
+  height: 332px;
+  vertical-align: middle;
+}
+
+@media screen and (max-width:1024px) {
+  .image-card {
+    max-width: 316px;
+    height: 150px;
+
+  }
+
+  .painting-card {
+    margin: 16px;
+  }
+}
+
+@media screen and (max-width:640px) {
+  .image-card {
+    width:332px;
+    height:166px;
+  }
+
+  .painting-card {
+    margin: 8px;
+  }
+}
+
+

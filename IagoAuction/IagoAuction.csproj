@@ -25,8 +25,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\paintings\models\painting-card.ts" />
+    <None Remove="ClientApp\src\app\shared\models\auction.ts" />
+    <None Remove="ClientApp\src\app\shared\models\bid.ts" />
+    <None Remove="ClientApp\src\app\shared\models\bidder.ts" />
+    <None Remove="ClientApp\src\app\shared\models\lot.ts" />
+    <None Remove="ClientApp\src\app\shared\models\painting.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\shared\guards\" />
     <Folder Include="ClientApp\src\assets\styles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\paintings\models\painting-card.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\auction.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\bid.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\bidder.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\lot.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\painting.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
