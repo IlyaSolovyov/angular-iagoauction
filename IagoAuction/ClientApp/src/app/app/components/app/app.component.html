@@ -8,7 +8,7 @@
     </h1>
   </mat-toolbar>
   <mat-sidenav-container #nagivationSidenav class="sidenav-container">
-    <mat-sidenav color ="accent" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="false" class="side-menu mat-elevation-z2"
+    <mat-sidenav color ="accent" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches" class="side-menu mat-elevation-z2"
                  #snav>
       <div class="side-menu-inner">
         <mat-nav-list>

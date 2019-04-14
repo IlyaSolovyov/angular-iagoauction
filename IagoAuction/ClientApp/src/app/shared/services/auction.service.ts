@@ -17,9 +17,12 @@ export class AuctionService {
     }));
   }
 
-  getAuctionBatch(batchSize: number, batchIndex: number): Observable<Auction[]> {
+  getAuctionsByMonth(year: number, month: number): Observable<Auction[]> {
     return this.http.get<Auction[]>(this.auctionResource).pipe(map(auctions => {
-      return auctions.slice(batchIndex * batchSize, batchIndex * batchSize + batchSize);
+
+      return auctions.filter(auction =>
+        new Date(auction.startDate).getFullYear() == year
+        && new Date(auction.startDate).getMonth() + 1 == month)
     }));
   }
 
