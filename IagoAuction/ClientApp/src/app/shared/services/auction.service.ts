@@ -39,4 +39,10 @@ export class AuctionService {
       return desiredAuction;
     }));
   }
+
+  makeBet(newBet: number): Observable<boolean> {
+    return new Observable<boolean>(observer => {
+      observer.next(true);
+    })
+  }
 }

@@ -38,7 +38,7 @@ export class AuctionsPageComponent {
       this.requestedMonth = +params.get('month');
 
       this.isLoadingResults = true;
-      this.auctionService.getAuctionsByMonth(this.requestedYear, this.requestedMonth).pipe(delay(1000)).subscribe(auctions => {
+      this.auctionService.getAuctionsByMonth(this.requestedYear, this.requestedMonth).pipe(delay(1000)).subscribe((auctions: Auction[]) => {
         this.auctionCollection = auctions;
 
         this.dataSource = new MatTableDataSource(this.auctionCollection);
@@ -51,6 +51,6 @@ export class AuctionsPageComponent {
   }
 
   navigateToAuction(auction:Auction) {
-    this.router.navigate(['/auctions/' + auction.id]);
+    this.router.navigate(['/auctions/' + auction.id + "/lots/1"], { preserveQueryParams: true });
   }
 }

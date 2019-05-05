@@ -6,7 +6,7 @@ export class Lot {
   painting: Painting;
   bids: Bid[];
 
-  constuctor(id: number, painting: Painting, bids: Bid[]) {
+  constructor(id: number, painting: Painting, bids: Bid[]) {
     this.id = id;
     this.painting = painting;
     this.bids = bids != null ? bids : [];
