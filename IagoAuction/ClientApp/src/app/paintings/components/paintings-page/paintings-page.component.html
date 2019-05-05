@@ -1,8 +1,8 @@
 <div class="container">
 
   <div class="list-container" *ngIf="paintingsCollection">
-      <div class="card-container" *ngFor="let card of paintingsCollection[selectedPageNumber-1]">
-          <paintings-painting-card class="card" [paintingCard]="card"></paintings-painting-card>
+    <div class="card-container" *ngFor="let card of paintingsCollection[selectedPageNumber-1]">
+      <paintings-painting-card class="card" [paintingCard]="card"></paintings-painting-card>
     </div>
   </div>
 

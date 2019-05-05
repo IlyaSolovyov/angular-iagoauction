@@ -10,6 +10,6 @@ export class Bid {
     this.id = id;
     this.value = value;
     this.dateTime = dateTime;
-    bidder = bidder;
+    this.bidder = bidder;
   }
 }
