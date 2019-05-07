@@ -43,4 +43,10 @@ export class PaintingsService {
       return result.find(article => article.id === id);
     }));
   }
+
+  addPainting(painting: Painting): Observable<boolean> {
+    return new Observable<boolean>(observer => {
+      observer.next(true);
+    })
+  }
 }

@@ -1,1 +1,49 @@
-﻿<div style="border: 1px solid red">AddPaintings Component</div>
+<div class="container">
+  <div class="header-container">
+    <h2>New painting</h2>
+  </div>
+  <div class="form-container">
+    <form [formGroup]="paintingCreationForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-section-header">
+        <b>Title</b>
+      </div>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Title" formControlName="titleControl">
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>Author</b>
+      </div>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Name" formControlName="authorControl">
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>Suggested Price</b>
+      </div>
+      <mat-form-field color="accent">
+        <textarea matInput placeholder="price" formControlName="priceControl" ></textarea>
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>Display image</b>
+      </div>
+      <div class="image-upload-control">
+        <div class="image-preview-section">
+          <img src={{newsArticle?.imageUrl}}/>
+        </div>
+        <button type="button" mat-raised-button color="accent" (click)="fileInput.click()">Upload</button>
+        <input hidden type="file" accept="image/*" (change)="updateImage($event)" #fileInput formControlName="imageControl">
+
+
+      </div>
+   
+
+      <div class="submit-button">
+        <button type="submit" mat-raised-button color="primary" >Submit</button>
+      </div>
+    </form>
+  </div>
+
+</div>
