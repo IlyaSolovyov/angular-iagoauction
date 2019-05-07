@@ -3,10 +3,14 @@ import { MaterialModule } from '../shared/modules/material.module';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './components/admin/admin.component';
+import { AddPaintingsComponent } from './components/add-paintings/add-paintings.component';
+import { AddAuctionsComponent } from './components/add-auctions/add-auctions.component';
 
 @NgModule({
   declarations: [
-    AdminComponent
+    AdminComponent,
+    AddPaintingsComponent,
+    AddAuctionsComponent
   ],
   imports: [
     CommonModule,
