@@ -3,6 +3,7 @@ import { HttpClient } from '../../../../node_modules/@angular/common/http';
 import { Observable } from 'rxjs';
 import { Auction } from '../models/auction';
 import { map } from 'rxjs/operators';
+import { AuctionDto } from '../dto/auction-dto';
 
 @Injectable()
 export class AuctionService {
@@ -38,6 +39,12 @@ export class AuctionService {
       })
       return desiredAuction;
     }));
+  }
+
+  addAuction(auction: AuctionDto): Observable<boolean> {
+    return new Observable<boolean>(observer => {
+      observer.next(true);
+    })
   }
 
   makeBet(newBet: number): Observable<boolean> {

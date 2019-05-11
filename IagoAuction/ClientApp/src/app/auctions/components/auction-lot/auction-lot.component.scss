@@ -62,10 +62,19 @@
 }
 
 .image-card {
-  width: 550px;
+  max-width: 100%;
+}
+
+@media(max-width: 600px){
+  .image-container {
+    max-width: 400%;
+  }
 }
 
 @media(max-width: 600px) {
+  .container{
+    flex-direction:column;
+  }
   // Custom header label that shows in each column, with a set width and bold font
   .mobile-label {
     width: 80px;
@@ -101,7 +110,7 @@
   }
 
   .image-card {
-    width: 300px;
+    width: 100%;
   }
 }
 

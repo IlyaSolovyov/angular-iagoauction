@@ -37,7 +37,6 @@ export class AuctionLotComponent {
 
     this.route.data
       .subscribe((data: { lot: Lot }) => {
-
         this.lot = data.lot != null
           ? new Lot(data.lot.id,
             data.lot.painting,
@@ -46,7 +45,7 @@ export class AuctionLotComponent {
           : null;
 
 
-        this.dataSource = new MatTableDataSource(this.lot.bids);
+        this.dataSource = new MatTableDataSource(this.lot != null ? this.lot.bids : []);
       });
   }
 
@@ -55,7 +54,7 @@ export class AuctionLotComponent {
 
     this.auctionService.makeBet(newBet).subscribe(result => {
 
-        this.snackBar.open(result, 'Successfully placed bet.', { duration: 3000, });
+      this.snackBar.open('Successfully placed bet.', 'GOT IT', { duration: 3000, });
         this.betGroup.reset();
         if (this.form) {
           this.form.resetForm();
@@ -63,7 +62,7 @@ export class AuctionLotComponent {
 
       },
       error => {
-        this.snackBar.open(error, 'Error placing bet. Please try again.', { duration: 3000, });
+        this.snackBar.open('Error placing bet. Please try again.', 'GOT IT', { duration: 3000, });
         //error handling
       });
   }

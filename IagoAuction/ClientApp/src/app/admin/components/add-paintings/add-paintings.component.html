@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="header-container">
+    <h2>{{title}}</h2>
+  </div>
+  <div class="form-container">
+    <form [formGroup]="paintingCreationForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-section-header">
+        <b>Title</b>
+      </div>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Title" formControlName="titleControl">
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>Description</b>
+      </div>
+      <mat-form-field color="accent">
+        <textarea matInput placeholder="Description" formControlName="descriptionControl"></textarea>
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>Author</b>
+      </div>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Name" formControlName="authorControl">
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>Suggested Price</b>
+      </div>
+      <mat-form-field color="accent">
+        <textarea matInput placeholder="Price" formControlName="priceControl" ></textarea>
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>Image URL</b>
+      </div>
+      <div class="image-preview-section">
+        <img src={{painting?.imageUrl}}/>
+      </div>
+      <mat-form-field color="accent">
+        <textarea matInput placeholder="URL" formControlName="imageControl" ></textarea>
+      </mat-form-field>
+   
+
+      <div class="submit-button">
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+      </div>
+    </form>
+  </div>
+
+</div>
