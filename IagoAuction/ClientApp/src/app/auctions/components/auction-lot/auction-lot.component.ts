@@ -37,7 +37,6 @@ export class AuctionLotComponent {
 
     this.route.data
       .subscribe((data: { lot: Lot }) => {
-
         this.lot = data.lot != null
           ? new Lot(data.lot.id,
             data.lot.painting,
@@ -46,7 +45,7 @@ export class AuctionLotComponent {
           : null;
 
 
-        this.dataSource = new MatTableDataSource(this.lot.bids);
+        this.dataSource = new MatTableDataSource(this.lot != null ? this.lot.bids : []);
       });
   }
 
