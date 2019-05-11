@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Formatters.Xml;
@@ -14,7 +15,8 @@ namespace IagoAuction.Models
 
         public List<Bid> Bids { get; set; }
 
-        public int AuctionId { get; set; }
+        public int? AuctionId { get; set; }
+        [ForeignKey("AuctionId")]
         public Auction Auction { get; set; }
 
         public Lot()
