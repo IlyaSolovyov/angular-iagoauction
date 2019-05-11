@@ -11,7 +11,7 @@ import { AuctionsModule } from '../auctions/auctions.module';
 import { AdminModule } from '../admin/admin.module';
 import { PaintingsService } from '../shared/services/paintings.service';
 import { AuctionService } from '../shared/services/auction.service';
-
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { AuctionService } from '../shared/services/auction.service';
     PaintingsModule,
     AuctionsModule,
     AdminModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatMomentDateModule
   ],
   providers: [
     PaintingsService,

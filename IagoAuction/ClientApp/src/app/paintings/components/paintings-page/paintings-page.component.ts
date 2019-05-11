@@ -68,7 +68,7 @@ export class PaintingsPageComponent {
           // get observables of all the unfetched batches
           const observables: Observable<PaintingCard[][]>[] = [];
           for (let i = this.maxBatchIndex + 1; i <= requestedBatchIndex; i++) {
-            observables.push(this.getNewsBatchObservable(i));
+            observables.push(this.getPaintingsBatchObservable(i));
           }
 
           // observables from an array will be called one-by-one and cancelled if previous HTTP call returned an empty array
@@ -101,7 +101,7 @@ export class PaintingsPageComponent {
               : this.paintingsCollection.length;
 
             // determine whether additional batches exist to disable related UI-controls if needed
-            this.getNewsBatchObservable(this.maxBatchIndex + 1).subscribe(result => {
+            this.getPaintingsBatchObservable(this.maxBatchIndex + 1).subscribe(result => {
               this.upcomingBatch = result;
               this.upcomingBatchExists = this.determineIfUpcomingBatchExists(this.upcomingBatch);
               this.upcomingBatchNumber = this.upcomingBatchExists ? this.maxBatchIndex + 1 : -1;
@@ -135,8 +135,8 @@ export class PaintingsPageComponent {
     return true;
   }
 
-  private getNewsBatchObservable(batchIndex: number): Observable<PaintingCard[][]> {
-    return this.paintingsService.getNewsBatch(batchIndex).pipe(map(result => {
+  private getPaintingsBatchObservable(batchIndex: number): Observable<PaintingCard[][]> {
+    return this.paintingsService.getPaintingsBatch(batchIndex).pipe(map(result => {
       const pageCards: PaintingCard[][] = [];
 
       for (let i = 0; i < result.length; i++) {

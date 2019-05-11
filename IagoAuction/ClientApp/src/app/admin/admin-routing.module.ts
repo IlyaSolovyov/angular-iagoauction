@@ -4,6 +4,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AddPaintingsComponent } from './components/add-paintings/add-paintings.component';
 import { AddAuctionsComponent } from './components/add-auctions/add-auctions.component';
 import { PaintingCreationResolver } from './components/add-paintings/painting-creation-resolver.service';
+import { AuctionCreationResolver } from './components/add-auctions/auction-creation-resolver.service';
 
 const adminRoutes: Routes = [
   {
@@ -13,7 +14,8 @@ const adminRoutes: Routes = [
       { path: '', redirectTo: 'paintings', pathMatch: 'full' },
       { path: 'paintings', component: AddPaintingsComponent, resolve: { painting: PaintingCreationResolver } },
       { path: 'paintings/:paintingId', component: AddPaintingsComponent, resolve: { painting: PaintingCreationResolver } },
-      { path: 'auctions', component: AddAuctionsComponent }
+      { path: 'auctions', component: AddAuctionsComponent, resolve: { auction: AuctionCreationResolver } },
+      { path: 'auctions/:auctionId', component: AddAuctionsComponent, resolve: { auction: AuctionCreationResolver } },
     ]
   }
 ];
@@ -29,7 +31,9 @@ const adminRoutes: Routes = [
     RouterModule
   ],
   providers: [
-    PaintingCreationResolver]
+    PaintingCreationResolver,
+    AuctionCreationResolver
+  ]
 })
 export class AdminRoutingModule {
 }

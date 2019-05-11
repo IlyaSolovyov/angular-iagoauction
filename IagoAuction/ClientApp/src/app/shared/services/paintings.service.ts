@@ -14,7 +14,7 @@ export class PaintingsService {
   constructor(protected http: HttpClient) { }
 
   // return current and next two pages
-  getNewsBatch(batchIndex: number): Observable<Painting[][]> {
+  getPaintingsBatch(batchIndex: number): Observable<Painting[][]> {
     return this.http.get<Painting[]>(this.resource).pipe(map(result => {
       const pages: Painting[][] = [];
       const postsOffset = this.pageSize * this.batchSize * batchIndex;
@@ -38,6 +38,12 @@ export class PaintingsService {
     }));
   }
 
+  getAvailablePaintings(): Observable<Painting[]> {
+    return this.http.get<Painting[]>(this.resource).pipe(map(result => {
+      return result;
+    }));
+  }
+
   getPainting(id: number): Observable<Painting> {
     return this.http.get<Painting[]>(this.resource).pipe(map(result => {
       return result.find(article => article.id === id);
@@ -49,4 +55,6 @@ export class PaintingsService {
       observer.next(true);
     })
   }
+
+
 }

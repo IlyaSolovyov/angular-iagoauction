@@ -1,1 +1,66 @@
-﻿<div style="border: 1px solid red">AddAuctions Component</div>
+<div class="container">
+  <div class="header-container">
+    <h2>{{title}}</h2>
+  </div>
+  <div class="form-container">
+    <form [formGroup]="auctionCreationForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-section-header">
+        <b>Title</b>
+      </div>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Title" formControlName="titleControl">
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>Description</b>
+      </div>
+      <mat-form-field color="accent">
+        <textarea matInput placeholder="Description" formControlName="descriptionControl"></textarea>
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>Start date</b>
+      </div>
+      <mat-form-field>
+        <input matInput color="accent" [matDatepicker]="startPicker" placeholder="Start date" formControlName="startDateControl">
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="form-section-header">
+        <b>End date</b>
+      </div>
+      <mat-form-field>
+        <input matInput color="accent" [matDatepicker]="endPicker" placeholder="End date" formControlName="endDateControl">
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+
+      <div formArrayName="paintingsControl">
+        <div class="form-section-header">
+          <b>Paintings:</b>
+        </div>
+        <div class="paintings-controls">
+          <button type="button" mat-raised-button color="accent" (click)="addPainting()">Add</button>
+          <button type="button" mat-raised-button color="warn" (click)="removePainting()">Remove</button>
+        </div>
+  
+        <div *ngFor="let painting of auctionCreationForm.get('paintingsControl').controls; let i=index">
+          <mat-form-field>
+            <mat-select placeholder="Painting {{i+1}}" [formControlName]="i" [(value)]="selectedPaintingIds[i]">
+              <mat-option *ngFor="let availablePainting of availablePaintings" [value]="availablePainting.id">
+                {{availablePainting.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="submit-button">
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+      </div>
+    </form>
+  </div>
+
+</div>
