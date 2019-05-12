@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Painting } from '../models/painting';
-import { HttpClient } from '../../../../node_modules/@angular/common/http';
+import { HttpClient, HttpHeaders } from '../../../../node_modules/@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -15,46 +15,49 @@ export class PaintingsService {
 
   // return current and next two pages
   getPaintingsBatch(batchIndex: number): Observable<Painting[][]> {
-    return this.http.get<Painting[]>(this.resource).pipe(map(result => {
-      const pages: Painting[][] = [];
-      const postsOffset = this.pageSize * this.batchSize * batchIndex;
-
-      for (let i = 0; i < this.batchSize; i++) {
-        pages[i] = [];
-        for (let j = 0; j < this.pageSize; j++) {
-
-          const index = postsOffset + i * this.pageSize + j;
-          const painting = result[index];
-
-          if (painting !== undefined) {
-            pages[i].push(result[index]);
-          } else {
-            break;
-          }
-
-        }
-      }
-      return pages;
+    return this.http.get<Painting[]>('/api/paintings/pages/' + (batchIndex + 1)).pipe(map((paintings: Painting[]) => {
+      console.log(paintings);
+      let paintingsBatch: Painting[][] = [];
+      paintingsBatch[0] = paintings.slice(0, 4);
+      paintingsBatch[1] = paintings.slice(4, 8);
+      paintingsBatch[2] = paintings.slice(8, 12);
+      return paintingsBatch;
     }));
+   
+
   }
 
   getAvailablePaintings(): Observable<Painting[]> {
-    return this.http.get<Painting[]>(this.resource).pipe(map(result => {
-      return result;
-    }));
+    return this.http.get<Painting[]>('/api/paintings/');
   }
 
   getPainting(id: number): Observable<Painting> {
-    return this.http.get<Painting[]>(this.resource).pipe(map(result => {
-      return result.find(article => article.id === id);
-    }));
+    return this.http.get<Painting>('/api/paintings/' + id.toString());
   }
 
-  addPainting(painting: Painting): Observable<boolean> {
-    return new Observable<boolean>(observer => {
-      observer.next(true);
-    })
+  addPainting(painting: Painting) {
+    const formData = new FormData();
+    formData.append('Title', painting.title);
+    formData.append('Description', painting.description);
+    formData.append('Author', painting.author);
+    formData.append('SuggestedStartPrice', painting.suggestedStartPrice.toString());
+    formData.append('ImageUrl', painting.imageUrl);
+    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+
+    return this.http.post('/api/paintings', formData, { headers: headers });
   }
 
+  updatePainting(painting: Painting, paintingId: number) {
+    const formData = new FormData();
+    formData.append('Title', painting.title);
+    formData.append('Description', painting.description);
+    formData.append('Author', painting.author);
+    formData.append('SuggestedStartPrice', painting.suggestedStartPrice.toString());
+    formData.append('ImageUrl', painting.imageUrl);
 
+    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+
+
+    return this.http.put('/api/paintings/' + paintingId, formData, { headers: headers });
+  }
 }

@@ -10,10 +10,12 @@ namespace IagoAuction.Models
     public class Lot
     {
         public int Id { get; set; }
-        
-        public List<Painting> Paintings { get; set; }
 
         public List<Bid> Bids { get; set; }
+
+        public int? PaintingId { get; set; }
+        [ForeignKey("paintingId")]
+        public Painting Painting { get; set; }
 
         public int? AuctionId { get; set; }
         [ForeignKey("AuctionId")]
@@ -21,7 +23,6 @@ namespace IagoAuction.Models
 
         public Lot()
         {
-            this.Paintings = new List<Painting>();
             this.Bids = new List<Bid>();
         }
     }

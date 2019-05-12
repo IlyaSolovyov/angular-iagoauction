@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '../../../../node_modules/@angular/common/http';
+import { HttpClient, HttpHeaders } from '../../../../node_modules/@angular/common/http';
 import { Observable } from 'rxjs';
 import { Auction } from '../models/auction';
 import { map } from 'rxjs/operators';
@@ -8,48 +8,62 @@ import { AuctionDto } from '../dto/auction-dto';
 @Injectable()
 export class AuctionService {
 
-  private auctionResource = 'assets/json/auctions.json';
+  private auctionResource = '/api/auctions';
 
   constructor(protected http: HttpClient) { }
 
   getAuctionById(id: number): Observable<Auction> {
-    return this.http.get<Auction[]>(this.auctionResource).pipe(map(auctions => {
-      return auctions.find(auction => auction.id === id);
-    }));
+    return this.http.get<Auction>('/api/auctions/' + id);
   }
 
   getAuctionsByMonth(year: number, month: number): Observable<Auction[]> {
-    return this.http.get<Auction[]>(this.auctionResource).pipe(map(auctions => {
-
-      return auctions.filter(auction =>
-        new Date(auction.startDate).getFullYear() == year
-        && new Date(auction.startDate).getMonth() + 1 == month)
-    }));
+    return this.http.get<Auction[]>('/api/auctions/' + year + '/' + month);
   }
 
   getAuctionContainingPainting(paintingId: number): Observable<Auction> {
-    return this.http.get<Auction[]>(this.auctionResource).pipe(map(auctions => {
-      let desiredAuction = null;
-      auctions.forEach(auction => {
-        auction.lots.forEach(lot => {
-          if (lot.painting.id == paintingId) {
-            desiredAuction = auction;
-          }
-        })
-      })
-      return desiredAuction;
-    }));
+    return this.http.get<Auction>('/api/auctions/painting/' + paintingId);
   }
 
-  addAuction(auction: AuctionDto): Observable<boolean> {
-    return new Observable<boolean>(observer => {
-      observer.next(true);
-    })
+  addAuction(auction: AuctionDto) {
+    const formData = new FormData();
+    formData.append('Title', auction.title);
+    formData.append('Description', auction.description);
+    formData.append('StartDate', auction.startDate.toDateString());
+    formData.append('EndDate', auction.endDate.toDateString());
+    for (let i = 0; i <auction.paintingIds.length; i++) {
+      formData.append('PaintingIds[' + i + "]", auction.paintingIds[i].toString());
+    }
+
+    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+
+    return this.http.post('/api/auctions', formData, { headers: headers });
   }
 
-  makeBet(newBet: number): Observable<boolean> {
-    return new Observable<boolean>(observer => {
-      observer.next(true);
-    })
+  updateAuction(auction: AuctionDto, auctionId: number) {
+    const formData = new FormData();
+    formData.append('Title', auction.title);
+    formData.append('Description', auction.description);
+    formData.append('StartDate', auction.startDate.toDateString());
+    formData.append('EndDate', auction.endDate.toDateString());
+    formData.append('PaintingIds', JSON.stringify(auction.paintingIds)) ;
+    for (let i = 0; i < auction.paintingIds.length; i++) {
+      formData.append('PaintingIds[' + i + "]", auction.paintingIds[i].toString());
+    }
+
+    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+
+    return this.http.put('/api/auctions' + auctionId, formData, { headers: headers });
+  }
+
+  makeBid(newBid: number, lotId: number) {
+    const formData = new FormData();
+    formData.append('Value', newBid.toString());
+    formData.append('Date', new Date().toDateString());
+    formData.append('BidderId', "1");
+    formData.append('LotId', lotId.toString());
+
+    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+
+    return this.http.post('/api/bids', formData, { headers: headers });
   }
 }
