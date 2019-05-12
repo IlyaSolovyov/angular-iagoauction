@@ -17,6 +17,7 @@ export class AuctionLotResolver implements Resolve<Lot>  {
     return this.auctionService.getAuctionById(auctionId).pipe(
       take(1),
       map((auction: Auction) => {
+        console.log("Opened following auction lot:");
         console.log(auctionId);
         console.log(lotId);
         console.log(auction);

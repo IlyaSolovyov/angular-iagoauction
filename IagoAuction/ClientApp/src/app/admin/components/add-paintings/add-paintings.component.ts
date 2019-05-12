@@ -37,7 +37,7 @@ export class AddPaintingsComponent {
           this.title = `Edit Painting #${this.painting.id}`;
         } else {
           this.mode = PaintingCreationType.Create;
-          this.title = 'Create new article';
+          this.title = 'Create new painting';
         }
 
         this.paintingCreationForm = new FormGroup({
@@ -52,14 +52,22 @@ export class AddPaintingsComponent {
   }
 
   onSubmit() {
-    console.log('Sending form data:');
+
     this.painting.title = this.paintingCreationForm.get('titleControl').value;
     this.painting.description = this.paintingCreationForm.get('descriptionControl').value;
     this.painting.author = this.paintingCreationForm.get('authorControl').value;
     this.painting.suggestedStartPrice = this.paintingCreationForm.get('priceControl').value;
     this.painting.imageUrl = this.paintingCreationForm.get('imageControl').value;
 
-    this.paintingsService.addPainting(this.painting);
+    if (this.mode == PaintingCreationType.Edit) {
+      console.log('Updating painting:');
+      console.log(this.painting);
+      this.paintingsService.updatePainting(this.painting, this.painting.id).subscribe();
+    } else {
+      console.log('Adding painting:');
+      console.log(this.painting);
+      this.paintingsService.addPainting(this.painting).subscribe();
+    }
   }
 }
 

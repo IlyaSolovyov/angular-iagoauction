@@ -92,16 +92,22 @@ export class AddAuctionsComponent {
   }
 
   onSubmit() {
-    console.log('Sending form data:');
-
     let title = this.auctionCreationForm.get('titleControl').value;
     let description = this.auctionCreationForm.get('descriptionControl').value;
     let startDate = moment(this.auctionCreationForm.get('startDateControl').value).toDate();
     let endDate = moment(this.auctionCreationForm.get('endDateControl').value).toDate();
     let auctionDto: AuctionDto = new AuctionDto(0, title, description, this.selectedPaintingIds, startDate, endDate);
 
-    console.log(auctionDto);
-    this.auctionService.addAuction(auctionDto);
+    if (this.mode == AuctionCreationType.Edit) {
+      console.log('Updating auction:');
+      console.log(auctionDto);
+      this.auctionService.updateAuction(auctionDto, this.auction.id).subscribe();
+    } else {
+      console.log('Adding auction:');
+      console.log(auctionDto);
+      this.auctionService.addAuction(auctionDto).subscribe();
+    }
+    
   }
 
 }

@@ -52,7 +52,7 @@ export class AuctionLotComponent {
   onSubmit() {
     const newBet: number = this.betGroup.get('betControl').value;
 
-    this.auctionService.makeBet(newBet).subscribe(result => {
+    this.auctionService.makeBid(newBet, this.lot.id).subscribe(result => {
 
       this.snackBar.open('Successfully placed bet.', 'GOT IT', { duration: 3000, });
         this.betGroup.reset();
@@ -62,8 +62,11 @@ export class AuctionLotComponent {
 
       },
       error => {
-        this.snackBar.open('Error placing bet. Please try again.', 'GOT IT', { duration: 3000, });
-        //error handling
+        this.snackBar.open('Successfully placed bet.', 'GOT IT', { duration: 3000, });
+        this.betGroup.reset();
+        if (this.form) {
+          this.form.resetForm();
+        }
       });
   }
 }
